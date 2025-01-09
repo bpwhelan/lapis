@@ -2,13 +2,13 @@
 <header style="visibility: hidden"></header>
 
 <main>
-  <!--------- front-vocab card ---------->
-  {{^IsSentenceCard}} {{^IsHintCard}}  {{^IsClickCard}}
+    <!--------- Vocab card ---------->
+    {{^IsSentenceCard}} {{^IsWordAndSentenceCard}} {{^IsClickCard}}
     <div lang="ja" class="front-vocab">{{Expression}}</div>
-  {{/IsClickCard}}  {{/IsHintCard}} {{/IsSentenceCard}}
+    {{/IsClickCard}} {{/IsWordAndSentenceCard}} {{/IsSentenceCard}}
 
-  <!------- Sentence card --------->
-  {{#IsSentenceCard}}
+    <!------- Sentence card --------->
+    {{#IsSentenceCard}}
     <div lang="ja" class="front-sentence">
       {{#FuriganaOnHover}}
       {{#SentenceFurigana}} {{furigana:SentenceFurigana}} {{/SentenceFurigana}}
@@ -20,10 +20,10 @@
       {{^SentenceFurigana}} {{kanji:Sentence}} {{/SentenceFurigana}}
       {{/FuriganaOnHover}}
     </div>
-  {{/IsSentenceCard}}
+    {{/IsSentenceCard}}
 
-  <!--------- Hint card ----------->
-  {{#IsHintCard}}
+    <!--------- Hint card ----------->
+    {{#IsWordAndSentenceCard}}
     <div lang="ja" class="front-vocab">{{Expression}}</div>
     <div id="hint">
       {{#FuriganaOnHover}}
@@ -36,50 +36,50 @@
       {{^SentenceFurigana}} {{kanji:Sentence}} {{/SentenceFurigana}}
       {{/FuriganaOnHover}}
     </div>
-  {{/IsHintCard}}
+    {{/IsWordAndSentenceCard}}
 
-  <!-------- Click card ----------->
-  {{#IsClickCard}}
+    <!-------- Click card ----------->
+    {{#IsClickCard}}
     <div id="click">
-      <div lang="ja" class="front-vocab">{{Expression}}</div>
+        <div lang="ja" class="front-vocab">{{Expression}}</div>
     </div>
-  {{/IsClickCard}}
+    {{/IsClickCard}}
 
-  <!-- Hint -->
-  {{#Hint}}
+    <!-- Hint -->
+    {{#Hint}}
     <div id="hint">{{Hint}}</div>
-  {{/Hint}}
+    {{/Hint}}
 </main>
 
 <script>
-  function ClickCard() {
-    const clickElement = document.getElementById('click');
+    function ClickCard() {
+        const clickElement = document.getElementById('click');
 
-    // Store original content so that we can click back to it
-    const originalContent = clickElement.innerHTML;
+        // Store original content so that we can click back to it
+        const originalContent = clickElement.innerHTML;
 
-    // This is what it is going to click to
-    const clickedContent = `
+        // This is what it is going to click to
+        const clickedContent = `
       <div lang="ja" class="front-sentence">
         {{#SentenceFurigana}} {{kanji:SentenceFurigana}} {{/SentenceFurigana}}
         {{^SentenceFurigana}} {{kanji:Sentence}} {{/SentenceFurigana}}
       </div>
     `;
 
-    // Implement the clicking mechanism
-    clickElement.addEventListener('click', function() {
-      if (clickElement.innerHTML === originalContent) {
-        clickElement.innerHTML = clickedContent;
-      } else {
-        clickElement.innerHTML = originalContent;
-      }
-    });
-  }
+        // Implement the clicking mechanism
+        clickElement.addEventListener('click', function () {
+            if (clickElement.innerHTML === originalContent) {
+                clickElement.innerHTML = clickedContent;
+            } else {
+                clickElement.innerHTML = originalContent;
+            }
+        });
+    }
 
-  function initialize() {
-    // Check what card type it is
-    if (`{{IsClickCard}}`) ClickCard();
-  }
+    function initialize() {
+        // Check what card type it is
+        if (`{{IsClickCard}}`) ClickCard();
+    }
 
-  initialize();
+    initialize();
 </script>
