@@ -61,8 +61,15 @@
         // This is what it is going to click to
         const clickedContent = `
       <div lang="ja" class="front-sentence">
-        {{#SentenceFurigana}} {{kanji:SentenceFurigana}} {{/SentenceFurigana}}
-        {{^SentenceFurigana}} {{kanji:Sentence}} {{/SentenceFurigana}}
+      {{#FuriganaOnHover}}
+      {{#SentenceFurigana}} {{furigana:SentenceFurigana}} {{/SentenceFurigana}}
+      {{^SentenceFurigana}} {{furigana:Sentence}} {{/SentenceFurigana}}
+      {{/FuriganaOnHover}}
+
+      {{^FuriganaOnHover}}
+      {{#SentenceFurigana}} {{kanji:SentenceFurigana}} {{/SentenceFurigana}}
+      {{^SentenceFurigana}} {{kanji:Sentence}} {{/SentenceFurigana}}
+      {{/FuriganaOnHover}}
       </div>
     `;
 

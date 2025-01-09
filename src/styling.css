@@ -578,12 +578,17 @@ footer {
 .show-furigana>ruby rt {
     opacity: 1;
 }
-.back-sentence > ruby rt {
+.sentence > ruby rt {
   opacity: 1;
 }
 .front-sentence > ruby rt {
   user-select: none;
   opacity: 0;
+}
+
+.front-sentence > ruby:hover rt {
+  opacity: 1;
+}
 
 ruby rt {
     user-select: none;
