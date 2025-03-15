@@ -9,32 +9,38 @@ An advanced yet lightweight [Anki](https://apps.ankiweb.net/) notetype, thoughtf
 
 ### Table of Contents
 
-- [Why was Lapis created?](#why-was-lapis-created)
-- [Key Features](#key-features)
-- [How to use Lapis](#how-to-use-lapis)
-- [How to update Lapis](#how-to-update-lapis)
-- [FAQ](#faq)
-  - [What is all this Anki, notetype and mining stuff?](#what-is-all-this-anki-notetype-and-mining-stuff)
-  - [How do I set up sentence furigana?](#how-do-i-set-up-sentence-furigana)
-  - [How do I switch from JPMN to Lapis?](#how-do-i-switch-from-jpmn-to-lapis)
-  - [How do I use the various card types?](#how-do-i-use-different-card-types)
-  - [What does `Hint` do?](#what-does-hint-do)
-  - [Why three different fields for definitions?](#why-three-different-fields-for-definitions)
-  - [Will this work with tools like JL?](#will-this-work-with-tools-like-jl)
-  - [How does tagging work in Lapis?](#can-i-use-tags)
-  - [How do I add additional info to the card?](#how-do-i-add-additional-information-to-the-card)
-  - [Does Lapis support frequency sorting?](#what-is-frequency-sorting-and-does-lapis-support-it)
-  - [How can I change the font size?](#how-can-i-change-the-font-size)
-  - [How can I change the fonts used?](#how-can-i-change-the-fonts-used)
-  - [How can I change the bold color?](#how-can-i-change-the-bold-color)
-  - [How can I move the sentence on mobile?](#how-can-i-move-the-sentence-on-mobile)
-  - [I found a bug, where can I report it?](#i-found-a-bug-where-can-i-report-it)
-  - [I have a question not covered in the FAQ](#i-have-a-question-not-covered-in-the-faq)
-- [Credits](#credits)
+- [Lapis](#lapis)
+    - [Table of Contents](#table-of-contents)
+  - [Why was Lapis created?](#why-was-lapis-created)
+  - [Key features](#key-features)
+  - [How to use Lapis](#how-to-use-lapis)
+  - [How to update Lapis](#how-to-update-lapis)
+  - [Lapis themes](#lapis-themes)
+  - [FAQ](#faq)
+    - [What is all this Anki, notetype and mining stuff?](#what-is-all-this-anki-notetype-and-mining-stuff)
+    - [How do I set up sentence furigana?](#how-do-i-set-up-sentence-furigana)
+    - [How do I switch from JPMN to Lapis?](#how-do-i-switch-from-jpmn-to-lapis)
+    - [How do I use the various card types?](#how-do-i-use-the-various-card-types)
+    - [What does `Hint` do?](#what-does-hint-do)
+    - [Why three different fields for definitions?](#why-three-different-fields-for-definitions)
+    - [Will this work with tools like JL?](#will-this-work-with-tools-like-jl)
+    - [How does tagging work in Lapis?](#how-does-tagging-work-in-lapis)
+    - [How do I add additional info to the card?](#how-do-i-add-additional-info-to-the-card)
+    - [Does Lapis support frequency sorting?](#does-lapis-support-frequency-sorting)
+    - [How can I change the font size?](#how-can-i-change-the-font-size)
+    - [How can I change the fonts used?](#how-can-i-change-the-fonts-used)
+    - [How can I change the bold color?](#how-can-i-change-the-bold-color)
+    - [How can I move the sentence on mobile?](#how-can-i-move-the-sentence-on-mobile)
+    - [I found a bug, where can I report it?](#i-found-a-bug-where-can-i-report-it)
+    - [I have a question not covered in the FAQ](#i-have-a-question-not-covered-in-the-faq)
+  - [Contributors](#contributors)
+    - [Additional thanks](#additional-thanks)
+      - [kuri](#kuri)
+      - [Ruri](#ruri)
 
 ## Why was Lapis created?
 
-Lapis was co-created by [Ruri](https://github.com/bewizible) and [kuri](https://github.com/donkuri/) to provide an alternative to the Anki notetype both were using at the time, [Aquafina](https://github.com/Aquafina-water-bottle) and later [arbyste](https://github.com/arbyste/)'s [jp-mining-note](https://arbyste.github.io/jp-mining-note-prerelease/) (abbreviated JPMN henceforth). While this note is fantastic and was a major inspiration for Lapis, we had the following issues with it:
+Lapis was co-created by [Ruri](https://github.com/bewizible), [itokatsu](https://github.com/itokatsu/) and [kuri](https://github.com/donkuri/) to provide an alternative to the Anki notetype we were using at the time, [Aquafina](https://github.com/Aquafina-water-bottle) and later [arbyste](https://github.com/arbyste/)'s [jp-mining-note](https://arbyste.github.io/jp-mining-note-prerelease/) (abbreviated JPMN henceforth). While this note is fantastic and was a major inspiration for Lapis, we had the following issues with it:
 
 1. The note relied on custom handlebars, many of which are now directly implemented in Yomitan.
 2. The heavy amount of JavaScript on the card caused noticeable lag on mobile devices.
@@ -43,7 +49,7 @@ Lapis was co-created by [Ruri](https://github.com/bewizible) and [kuri](https://
 5. The source code was auto-generated, making it a real challenge for both developers and non-developers alike to read and customize. This coupled with the complexity of the note meant it was very hard for people to contribute.
 6. The original developer of the note sadly went MIA in the summer of 2023, leaving arbyste alone to understand the codebase and fix potential issues. While arbyste has done outstanding work, no further development is planned except for bug fixing.
 
-At the same time, another great notetype caught our eyes, [rudnam](https://github.com/rudnam)'s excellent [JP-study](https://github.com/rudnam/JP-study). **Lapis was made to take the best of both worlds and avoid the issues mentioned above**. Ruri focused on the technical side of the project, writing the code and building the note, while kuri helped design the note, gave feedback and led the project.
+At the same time, another great notetype caught our eyes, [rudnam](https://github.com/rudnam)'s excellent [JP-study](https://github.com/rudnam/JP-study). **Lapis was made to take the best of both worlds and avoid the issues mentioned above**. Ruri focused on the technical side of the project, writing the code and building the note, while kuri helped design the note, gave feedback and led the project heavily in its initial stages. After this, itokatsu joined the team as a driving force behind the code development, with Ruri providing feedback and leading/managing the project's codebase (big thanks to itokatsu!).
 **We warmly welcome new contributors!**
 
 ## Key features
@@ -57,34 +63,38 @@ At the same time, another great notetype caught our eyes, [rudnam](https://githu
 
 To use Lapis, first download the example deck from [Releases](https://github.com/donkuri/lapis/releases). From there, you need to change your fields settings in Yomitan. Start by selecting `Lapis` as the `Model` in Yomitan's `Configure Anki Card Format`. Here is how your fields should be set up:
 
-| Field              | Value                                                                                                                                                      |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Expression         | `{expression}`                                                                                                                                             |
-| ExpressionFurigana | `{furigana-plain}`                                                                                                                                         |
-| ExpressionReading  | `{reading}`                                                                                                                                                |
-| ExpressionAudio    | `{audio}`                                                                                                                                                  |
-| SelectionText      | `{popup-selection-text}`                                                                                                                                   |
-| MainDefinition     | Something like `{single-glossary-jmdict/jitendex}`. Find this by clicking the down arrow next to this field, and finding a dictionary in a similar format. |
-| Sentence           | `{cloze-prefix}<b>{cloze-body}</b>{cloze-suffix}`                                                                                                          |
-| SentenceFurigana   |                                                                                                                                                            |
-| SentenceAudio      |                                                                                                                                                            |
-| Picture            |                                                                                                                                                            |
-| Glossary           | `{glossary}`                                                                                                                                               |
-| Hint               | To understand the usage of this field, refer to [this](#what-does-hint-do)                                                                                 |
-| IsHintCard         |                                                                                                                                                            |
-| IsClickCard        |                                                                                                                                                            |
-| IsSentenceCard     |                                                                                                                                                            |
-| PitchPosition      | `{pitch-accent-positions}`                                                                                                                                 |
-| PitchCategories    | `{pitch-accent-categories}`                                                                                                                                |
-| Frequency          | `{frequencies}`                                                                                                                                            |
-| FreqSort           | `{frequency-harmonic-rank}`                                                                                                                                |
-| MiscInfo           | `{document-title}` If you want your cards to include the title of the tab they were mined from, such as for light novels (LNs), please use this feature.                      |
+| Field                 | Value                                                                                                                                                      |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Expression            | `{expression}`                                                                                                                                             |
+| ExpressionFurigana    | `{furigana-plain}`                                                                                                                                         |
+| ExpressionReading     | `{reading}`                                                                                                                                                |
+| ExpressionAudio       | `{audio}`                                                                                                                                                  |
+| SelectionText         | `{popup-selection-text}`                                                                                                                                   |
+| MainDefinition        | Something like `{single-glossary-jmdict/jitendex}`. Find this by clicking the down arrow next to this field, and finding a dictionary in a similar format. |
+| Sentence              | `{cloze-prefix}<b>{cloze-body}</b>{cloze-suffix}`                                                                                                          |
+| SentenceFurigana      |                                                                                                                                                            |
+| SentenceAudio         |                                                                                                                                                            |
+| Picture               |                                                                                                                                                            |
+| Glossary              | `{glossary}`                                                                                                                                               |
+| Hint                  | To understand the usage of this field, refer to [this](#what-does-hint-do)                                                                                 |
+| IsWordAndSentenceCard |                                                                                                                                                            |
+| IsClickCard           |                                                                                                                                                            |
+| IsSentenceCard        |                                                                                                                                                            |
+| PitchPosition         | `{pitch-accent-positions}`                                                                                                                                 |
+| PitchCategories       | `{pitch-accent-categories}`                                                                                                                                |
+| Frequency             | `{frequencies}`                                                                                                                                            |
+| FreqSort              | `{frequency-harmonic-rank}`                                                                                                                                |
+| MiscInfo              | `{document-title}` If you want your cards to include the title of the tab they were mined from, such as for light novels (LNs), please use this feature.   |
 
-In `MainDefinition`, what you get will depend on the version of JMdict or Jitendex you have. If you decide you do not want to use any bilingual dictionary, simply use your main monolingual dictionary there.
+In `MainDefinition`, what you get will depend on the version of JMdict or Jitendex you have. If you decide you do not want to use any bilingual dictionary, simply use your main monolingual dictionary there. **Note:** Ensure that the `SentenceFurigana` field is empty, as Yomitan may automatically insert `{sentence-furigana}`. We strongly recommend **against** using this handlebar, as it does not preserve bold formatting. Additionally, if the `Sentence` field is updated, the furigana field will not be adjusted accordingly. Instead, we recommend using [AJT Japanese](docs/anki_setup.md).
 
 ## How to update Lapis
 
 In order to update Lapis (provided you're on Anki 23.10+, the supported versions), simply import the newer APKG.
+
+## Lapis themes
+
+[ccos89](https://github.com/ccos89) made a few themes for Lapis based on the [Catpuccin palette](https://catppuccin.com/palette/). You can find them [over here](https://github.com/ccos89/lapis-catpuccin). This might alter the pitch color accent, so do keep it in mind.
 
 ## FAQ
 
@@ -104,11 +114,11 @@ Please refer to [this](docs/updating_cards.md). We do not provide other updating
 
 The `is...Card` fields let you select the kind of card you want to use by placing 'x' (or anything really) in one of the fields. Without anything, you get plain old vocab cards. Please only use one selector to avoid bugs. Here are all the possible options:
 
-| Field selected | Effect                                                                |
-| -------------- | --------------------------------------------------------------------- |
-| IsHintCard     | Displays the `Sentence` field as a hint below the word on the front.  |
-| isClickCard    | Makes the word in the front of the card clickable to get the sentence |
-| isSentenceCard | The full sentence appears in the front instead of only the word       |
+| Field selected        | Effect                                                                |
+| --------------------- | --------------------------------------------------------------------- |
+| IsWordAndSentenceCard | Displays the `Sentence` field as a hint below the word on the front.  |
+| isClickCard           | Makes the word in the front of the card clickable to get the sentence |
+| isSentenceCard        | The full sentence appears in the front instead of only the word       |
 
 ### What does `Hint` do?
 
@@ -122,6 +132,7 @@ Here’s a brief overview of its usage as described on the Animecards site:
   - 悪口 (あっこう - わるくち)
 
 Tip: To differentiate between readings, you can specify **音読み** (on'yomi) and **訓読み** (kun'yomi) in the `Hint` field when necessary.
+
 - **Words appearing only in certain contexts**: Some words commonly appear in specific phrases or expressions. Since this context is usually consistent, it’s fine to include it as a hint.
 - **Onomatopoeic or kana words**: For words written without kanji, where no semantic clues are provided, adding a hint with context can make the meaning clearer.
 - **Making cards easier**: If kanji alone don't provide enough information, or you’ve failed a card repeatedly, the `Hint` field can make reviews more manageable. Use this as a last resort when necessary.
@@ -138,7 +149,7 @@ This is partly inspired by JPMN and its method of organizing dictionaries. There
 
 ### Will this work with tools like JL?
 
-There is a [Setup Guide for JL](docs/jl_setup.md). JL has a couple of drawbacks: it doesn't support external dictionaries and you'll need to use [AJT Japanese](docs/anki_setup.md) to fill in all furigana. Otherwise, Lapis works well with JL. In general, **Lapis should work well with tools that support Yomitan dictionaries but not custom handlebars**.
+There is a [Setup Guide for JL](docs/jl_setup.md). Lapis works well with JL. In general, **Lapis should work well with tools that support Yomitan dictionaries but not custom handlebars**.
 
 ### How does tagging work in Lapis?
 
@@ -186,6 +197,7 @@ You can adjust any of these `px` values to your preferred font size.
 To change the font family, open the `Styling` section of the card in Anki by going to `Browse`, then select a Lapis card and then click on `Cards` (top-left of the card editor). In the `Styling` section, look for the part labeled `/* Miscellaneous */`, and you will see this:
 
 ```css
+/* Miscellaneous */
 --font-serif: serif;
 --font-sans: sans-serif;
 ```
@@ -194,7 +206,13 @@ You can replace these with any fonts you prefer, or leave them as is to use the 
 
 ### How can I change the bold color?
 
-In case you have the sentence in front with the word bolded, it is bolded in gray. If you want to change that color and you're using the dark theme, look for `--bold: #7d8590;` and change the hexcode to whatever color you want by inputting the hexcode corresponding to that color. For the light theme, it's under `--bold: #999999;`. You can find a hexcode selectors online if you don't know what your color is.
+The default bold color is gray if no pitch accent coloring is available. If you want to change that color, open the `Styling` section of any Lapis card in Anki by going to `Browse`, then select any Lapis card and click on `Cards`  (top-left of the card editor). In the `Styling` section, look for the part labeled `/* Bold color */` and you will see this:
+```css
+/* Bold color */
+--light-mode-bold: #999999;
+--dark-mode-bold: #7d8590;
+```
+Change the hexcode to whatever color you want by inputting the hexcode corresponding to that color. You can find [hexcode selectors](https://htmlcolorcodes.com/) online if you would like a color picker to easily choose from.
 
 ### How can I move the sentence on mobile?
 

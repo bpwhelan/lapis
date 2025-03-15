@@ -5,12 +5,14 @@
 AJT Japanese is an Anki add-on, and the version maintained by arbyste is recommended. Check [here](#why-do-you-use-the-arbyste-version) to find out why. You can download it [here](https://ankiweb.net/shared/info/200813220). After installing the add-on, restart Anki to see **AJT** in the top bar.
 
 1. **Setting up automatic furigana for the sentence field**  
-   Click on `AJT` in the top bar, then select `Furigana`. Make sure your settings match the following:
+   Click on `AJT` in the top bar, then select `Japanese Options...`, then `Furigana`. Make sure your settings match the following:
 
    <div align="center">
      <img src="../assets/furiganaAJT.png">
      <p><em>Focus mainly on the Edit Profile section</em></p>
    </div>
+
+   Make sure to *uncheck* `Bulk Add` in the `Triggered By` dropdown, this is *checked* by default.
 
    Click `OK` to save your settings. That's it!
 

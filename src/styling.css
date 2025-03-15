@@ -40,12 +40,13 @@
     --mobile-info-font-size: 16px;
 
     /* Miscellaneous */
-    --font-serif: "Georgia", "Liberation Serif", "Times New Roman", "Hiragino Mincho ProN", "Noto Serif CJK JP", "Yu Mincho", HanaMinA, HanaMinB, serif;
+    --font-serif: "Georgia", "Liberation Serif", "Times New Roman", "Hiragino Mincho ProN", "Noto Serif CJK JP", "MS Mincho", HanaMinA, HanaMinB, serif;
     --font-sans: "SF Pro Display", "Liberation Sans", "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans CJK JP", "Meiryo", HanaMinA, HanaMinB, sans-serif;
     --light-mode-image-brightness: 85%;
     --dark-mode-image-brightness: 80%;
     --light-mode-tooltip-hover-color: rgb(256, 256, 256, 0.9);
     --dark-mode-tooltip-hover-color: rgba(0, 0, 0, 0.9);
+    --def-picture-size: 200px;
     --max-width: 800px;
 
     font-size: var(--main-font-size);
@@ -159,6 +160,7 @@ html.mobile {
 
 .front-vocab {
     font-size: var(--vocab-font-size);
+    line-height: 1.5;
 }
 
 .front-sentence {
@@ -195,11 +197,13 @@ html.mobile {
     background-color: #222;
     border-color: #777;
     transform: scale(0.98);
+    line-height: 1.5;
 }
 
 #hint {
     font-size: var(--hint-font-size);
     margin-top: -5px;
+    line-height: 1.5;
 }
 
 #hint > ruby rt {
@@ -219,6 +223,7 @@ opacity: 1;
 #click .front-vocab {
     display: inline-block;
     line-height: 1.2;
+    margin-bottom: 20px;
     border-bottom: 2px dotted var(--fg-subtle);
 }
 
@@ -226,10 +231,7 @@ opacity: 1;
 
 /* Vocab on the back (for mobile) */
 .vocab {
-    font-size: var(--back-vocab-font-size);
-}
-
-.mobile .vocab {
+    line-height: 1.5;
     font-size: var(--back-vocab-font-size);
 }
 
@@ -279,21 +281,13 @@ header {
 
 .freq-list-container ul {
     list-style-type: none;
+    line-height: 1.5;
     margin: 0;
     padding: 0;
 }
 
-.freq-list-container li {
-    margin-bottom: 5px;
-}
-
-.freq-list-container {
-    opacity: 0;
-}
-
 .freq-list-container.visible {
     display: block;
-    opacity: 1;
 }
 
 /* Info (audio, reading) */
@@ -405,7 +399,8 @@ header {
 /* MainDefinition */
 .definition {
     text-align: left;
-    display: inline-block;
+    width: fit-content;
+    max-width: 100%;
 }
 
 /* Definition box */
@@ -432,8 +427,34 @@ header {
     transition: filter 0.3s;
 }
 
-.image img:hover {
+.image img:hover,
+.def-image img:hover {
     filter: brightness(var(--image-brightness));
+}
+
+/* Definition Image(s) */
+.def-image {
+    float: right;
+    margin-left: 10px;
+    max-width: min(35%, var(--def-picture-size));
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.def-image img {
+    object-fit: contain;
+    max-height: var(--def-picture-size);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: filter 0.3s;
+}
+
+.def-image ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 /* Image modal css */
@@ -479,6 +500,7 @@ header {
 
 /* Back sentence */
 .sentence {
+    line-height: 1.5;
     font-size: var(--back-sentence-font-size);
     display: inline-block;
     width: calc(100% - 20px);
@@ -494,6 +516,7 @@ header {
 }
 
 .mobile .sentence-mobile {
+    line-height: 1.5;
     font-size: var(--back-sentence-font-size);
     display: inline-block;
     width: calc(100% - 20px);
@@ -518,11 +541,16 @@ footer {
     flex-grow: 1;
 }
 
+.tags-container .tags {
+    min-height: 1.6em;
+}
+
 .tags {
     font-family: var(--font-sans);
     background-color: var(--bg-elevated);
     color: var(--fg-color);
-    display: inline-block;
+    display: inline-grid;
+    place-items: center;
     padding: 1px 5px;
     cursor: pointer;
     border-radius: 5px;
@@ -597,22 +625,11 @@ footer {
     margin: 0;
 }
 
-/* Full definition */
-.full-def {
-    font-family: var(--font-sans);
-    text-align: left;
-    display: inline-flex;
-}
-
-.full-def ol {
-    margin: 0;
-}
-
 /* ----- Misc ----- */
 
 /* Furigana */
 .show-furigana>ruby rt {
-    opacity: 1;
+    visibility: visible;
 }
 .sentence > ruby rt {
   opacity: 1;
@@ -620,11 +637,11 @@ footer {
 
 ruby rt {
     user-select: none;
-    opacity: 0;
+    visibility: hidden;
 }
 
 ruby:hover rt {
-    opacity: 1;
+    visibility: visible;
 }
 
 /* Bold */
@@ -650,7 +667,6 @@ details {
 summary {
     user-select: none;
     cursor: pointer;
-    width: fit-content;
     margin: 0px auto;
 }
 
@@ -666,7 +682,7 @@ summary {
 .pitch-high>.pitch-line {
     display: block;
     position: absolute;
-    top: -0.001em;
+    top: -0.1em;
     left: 0;
     right: 0;
     height: 0;
@@ -683,7 +699,7 @@ summary {
 .pitch-to-drop>.pitch-line {
     display: block;
     position: absolute;
-    top: -0.001em;
+    top: -0.1em;
     left: 0;
     right: 0;
     border-top-width: 0.1em;
@@ -759,9 +775,12 @@ summary {
     padding-left: 0;
 }
 
-/* fix list-number for {jitendex-brief} */
-#primary li[data-dictionary]:not(:has(> i))>span>div {
-    display: inline;
+/* reduce indentations of Jitendex for mobile */
+.mobile li[data-dictionary^="Jitendex"] ul,
+.mobile li[data-dictionary^="Jitendex"] ol,
+.mobile li[data-details^="Jitendex"] ul,
+.mobile li[data-details^="Jitendex"] ol {
+    padding-left: 0.3em;
 }
 
 /* Turn off italics */
@@ -779,6 +798,11 @@ li[data-dictionary^="JMdict"] i {
 
 .definition .hidden {
     display: none
+}
+
+/* Prevent wrapping in the middle of a Jitendex tags */
+span[data-sc-code] {
+    white-space: nowrap;
 }
 
 /* backwards compatibility code for JPMN definitions */
@@ -827,18 +851,13 @@ li[data-details="JMdict Extra"] .dict-group__glossary ul[data-sc-content="glossa
  * customization for specific dictionaries
  */
 /* Makes JMdict italic */
-ol li[data-details="JMdict (English)"],
-ol li[data-details="JMdict"],
-ol li[data-details="JMdict Extra"] {
-    /* removes the dictionary entry for jmdict */
-}
-
 ol li[data-details="JMdict (English)"] .dict-group__tag-list,
 ol li[data-details="JMdict"] .dict-group__tag-list,
 ol li[data-details="JMdict Extra"] .dict-group__tag-list {
     font-style: italic;
 }
 
+/* removes the dictionary entry for jmdict */
 ol li[data-details="JMdict (English)"] .dict-group__tag-list .dict-group__tag--dict,
 ol li[data-details="JMdict"] .dict-group__tag-list .dict-group__tag--dict,
 ol li[data-details="JMdict Extra"] .dict-group__tag-list .dict-group__tag--dict {
@@ -870,4 +889,28 @@ ol li[data-details="新和英"] details.glossary-text__details .glossary-text__s
 
 .dict-group__tag-list::after {
     content: ") ";
+}
+
+/* Show definition furigana */
+.def-blockquote rt {
+    visibility: visible;
+}
+
+/* Lessen def-blockquote padding */
+.def-blockquote {
+    padding-block: .5em;
+}
+.def-blockquote ol {
+    margin-block: 0em;
+}
+.definition ol:has(> li[data-dictionary]),
+.definition ol:has(> li[data-details]) {
+    padding-inline-start: 1.3em;
+}
+
+/* Removes list numbering when only one list element  */
+.definition ol:has(> li[data-dictionary]:only-of-type),
+.definition ol:has(> li[data-details]:only-of-type) {
+    list-style-type : none;
+    padding-inline-start: 0;
 }

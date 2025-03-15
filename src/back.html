@@ -34,10 +34,8 @@
                 <!-- Reading + Pitch Accent -->
                 <div class="info">
                     <div class="pitch">
-                        <div style="margin-right: -15px; display: inline">
-                            {{#ExpressionFurigana}}{{kana:ExpressionFurigana}}{{/ExpressionFurigana}}
-                            {{^ExpressionFurigana}}{{ExpressionReading}}{{/ExpressionFurigana}}
-                        </div>
+                        {{#ExpressionFurigana}}{{kana:ExpressionFurigana}}{{/ExpressionFurigana}}
+                        {{^ExpressionFurigana}}{{ExpressionReading}}{{/ExpressionFurigana}}
                     </div>
 
                     <!-- Pitch Accent -->
@@ -81,8 +79,13 @@
         {{/Hint}}
 
         <!-- The entire definition blockquote -->
-        <div class="def-info-container"><div class="def-info"></div></div>
+        <div class="def-info-container">
+            <div class="def-info"></div>
+        </div>
         <blockquote class="main-def def-blockquote">
+            {{#DefinitionPicture}}
+            <div class="def-image">{{DefinitionPicture}}</div>
+            {{/DefinitionPicture}}
             <div class="definition">
                 {{#SelectionText}}
                 <div id="selection" data-display-name="Text Selection">{{SelectionText}}</div>
@@ -281,15 +284,12 @@
     }
 
     function constructPitch() {
+        const pitchPositions = `{{PitchPosition}}`.match(/^\d+|\d+\b|\d+(?=\w)/g);
+        if (!pitchPositions) return;
+
         const kana = `{{kana:ExpressionFurigana}}` || `{{ExpressionReading}}`;
         const pitch = document.querySelector(".pitch");
         const pitchTags = document.querySelector("#pitch-tags");
-        const pitchPositions = `{{PitchPosition}}`.match(/^\d+|\d+\b|\d+(?=\w)/g);
-
-        if (!pitchPositions) {
-            pitch.innerHTML = `<div style="margin-right: -15px; display: inline;">${kana}</div>`;
-            return;
-        }
 
         const createPitchSpan = (pitchClass, pitchChar) => {
             const pitchSpan = document.createElement("span");
@@ -387,9 +387,13 @@
 
     // Removes Unnecessary definitions
     function cleanUpDefinitions() {
-        var primary = document.getElementById("primary");
-        var glossaries = document.getElementById("glossaries");
-        if (primary && primary.textContent === "" ) {
+        let selection = document.getElementById("selection");
+        let primary = document.getElementById("primary");
+        let glossaries = document.getElementById("glossaries");
+        if (selection && selection.textContent === "") {
+            selection.remove();
+        }
+        if (primary && primary.textContent === "") {
             primary.remove();
             primary = null;
         }
@@ -433,7 +437,7 @@
 
         // hide all but first definition
         let definitions = document.querySelectorAll(".main-def > .definition > div");
-        Array.from(definitions).slice(1).forEach( def => { def.classList.add("hidden"); });
+        Array.from(definitions).slice(1).forEach(def => { def.classList.add("hidden"); });
         // no need for toggling on less than 2 definitions
         if (definitions.length < 2) return;
 
@@ -469,33 +473,35 @@
     }
 
     // This just handles clicking and showing images
-    function clickImage() {
+    function clickImages() {
         const modalBg = document.querySelector(".modal-bg");
         const imgPopup = document.querySelector(".img-popup");
-        const image = document.querySelector(".image img");
+        const images = Array.from(document.querySelectorAll(".image img, .def-image img"));
 
-        if (!image) return;
+        if (images.length < 1) return;
 
-        image.addEventListener("click", () => {
-            const imgPopupContainer = document.createElement("div");
-            const imgPopupImg = document.createElement("img");
+        for (let image of images) {
+            image.addEventListener("click", () => {
+                const imgPopupContainer = document.createElement("div");
+                const imgPopupImg = document.createElement("img");
 
-            imgPopupContainer.classList.add("img-popup-container");
-            imgPopupImg.src = image.src;
-            imgPopupImg.classList.add("img-popup-img");
+                imgPopupContainer.classList.add("img-popup-container");
+                imgPopupImg.src = image.src;
+                imgPopupImg.classList.add("img-popup-img");
 
-            if (image.height > image.width) {
-                imgPopupContainer.style.height = "calc(100% - 20px)";
-                imgPopupContainer.style.width = "max-content";
-            }
-            imgPopup.innerHTML = "";
-            imgPopup.appendChild(imgPopupContainer);
-            imgPopupContainer.appendChild(imgPopupImg);
+                if (image.height > image.width) {
+                    imgPopupContainer.style.height = "calc(100% - 20px)";
+                    imgPopupContainer.style.width = "max-content";
+                }
+                imgPopup.innerHTML = "";
+                imgPopup.appendChild(imgPopupContainer);
+                imgPopupContainer.appendChild(imgPopupImg);
 
-            document.body.classList.add("img-popup");
-            modalBg.style.display = "block";
-            imgPopupContainer.style.display = "flex";
-        });
+                document.body.classList.add("img-popup");
+                modalBg.style.display = "block";
+                imgPopupContainer.style.display = "flex";
+            });
+        }
 
         modalBg.addEventListener("click", () => {
             document.body.classList.remove("img-popup");
@@ -571,7 +577,7 @@
         paintTargetWord();
         constructPitch();
         setUpDefToggle();
-        clickImage();
+        clickImages();
         frequencyHover();
         setDHHeight();
         hideCorrectDefinition();

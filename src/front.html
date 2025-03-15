@@ -61,25 +61,29 @@
         // This is what it is going to click to
         const clickedContent = `
       <div lang="ja" class="front-sentence">
-      {{#FuriganaOnHover}}
-      {{#SentenceFurigana}} {{furigana:SentenceFurigana}} {{/SentenceFurigana}}
-      {{^SentenceFurigana}} {{furigana:Sentence}} {{/SentenceFurigana}}
-      {{/FuriganaOnHover}}
+            {{#FuriganaOnHover}}
+            {{#SentenceFurigana}} {{furigana:SentenceFurigana}} {{/SentenceFurigana}}
+            {{^SentenceFurigana}} {{furigana:Sentence}} {{/SentenceFurigana}}
+            {{/FuriganaOnHover}}
 
-      {{^FuriganaOnHover}}
-      {{#SentenceFurigana}} {{kanji:SentenceFurigana}} {{/SentenceFurigana}}
-      {{^SentenceFurigana}} {{kanji:Sentence}} {{/SentenceFurigana}}
-      {{/FuriganaOnHover}}
+            {{^FuriganaOnHover}}
+            {{#SentenceFurigana}} {{kanji:SentenceFurigana}} {{/SentenceFurigana}}
+            {{^SentenceFurigana}} {{kanji:Sentence}} {{/SentenceFurigana}}
+            {{/FuriganaOnHover}}
       </div>
     `;
 
-        // Implement the clicking mechanism
-        clickElement.addEventListener('click', function () {
+        function toggleContent() {
             if (clickElement.innerHTML === originalContent) {
                 clickElement.innerHTML = clickedContent;
             } else {
                 clickElement.innerHTML = originalContent;
             }
+        }
+        // Implement the clicking mechanism
+        clickElement.addEventListener('click', (e) => toggleContent());
+        document.addEventListener('keydown', (e) => {
+            if (event.key === 'c' | event.key === 'C') toggleContent();
         });
     }
 
