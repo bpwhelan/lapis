@@ -164,6 +164,8 @@ html.mobile {
 .front-sentence {
     font-size: var(--sentence-font-size);
     display: inline-block;
+    width: calc(100% - 20px);
+    max-width: var(--max-width);
 }
 .front-sentence b > ruby rt {
   opacity: 0;
@@ -171,10 +173,44 @@ html.mobile {
 .front-sentence b > ruby:hover rt {
   opacity: 1;
 }
+
+.hint {
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 8px 12px;
+    background-color: #333;
+    color: #ddd;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.hint:hover {
+    background-color: #555;
+    border-color: #666;
+    color: white;
+}
+
+.hint:active {
+    background-color: #222;
+    border-color: #777;
+    transform: scale(0.98);
+}
+
 #hint {
     font-size: var(--hint-font-size);
     margin-top: -5px;
 }
+
+#hint > ruby rt {
+    user-select: none;
+    opacity: 0;
+  }
+  
+#hint > ruby:hover rt {
+opacity: 1;
+}
+
 
 #click {
     user-select: none;
@@ -579,14 +615,6 @@ footer {
     opacity: 1;
 }
 .sentence > ruby rt {
-  opacity: 1;
-}
-.front-sentence > ruby rt {
-  user-select: none;
-  opacity: 0;
-}
-
-.front-sentence > ruby:hover rt {
   opacity: 1;
 }
 

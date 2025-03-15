@@ -63,6 +63,23 @@
             {{^SentenceFurigana}} {{furigana:Sentence}} {{/SentenceFurigana}}
         </div>
 
+        <!-- This is for the sentence that you see on mobile (positioned under definition), on Desktop, the sentence goes above the definition box, and this is hidden -->
+        <div class="sentence-mobile">
+            {{#SentenceFurigana}} {{furigana:SentenceFurigana}} {{/SentenceFurigana}}
+            {{^SentenceFurigana}} {{furigana:Sentence}} {{/SentenceFurigana}}
+        </div>
+
+        {{#SentenceMeaning}}
+        <hr>
+            <div class="sentence">
+                {{SentenceMeaning}}
+            </div>
+        {{/SentenceMeaning}}
+
+        {{#Hint}}
+            <div id="hint">{{Hint}}</div>
+        {{/Hint}}
+
         <!-- The entire definition blockquote -->
         <div class="def-info-container"><div class="def-info"></div></div>
         <blockquote class="main-def def-blockquote">
@@ -76,12 +93,6 @@
                 <div id="glossaries" data-display-name="Glossaries">{{Glossary}}</div>
             </div>
         </blockquote>
-
-        <!-- This is for the sentence that you see on mobile (positioned under definition), on Desktop, the sentence goes above the definition box, and this is hidden -->
-        <div class="sentence-mobile">
-            {{#SentenceFurigana}} {{furigana:SentenceFurigana}} {{/SentenceFurigana}}
-            {{^SentenceFurigana}} {{furigana:Sentence}} {{/SentenceFurigana}}
-        </div>
 
         <!------- Image modal --------->
         <div class="modal-bg tappable"></div>

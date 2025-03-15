@@ -25,7 +25,7 @@
     <!--------- Hint card ----------->
     {{#IsWordAndSentenceCard}}
     <div lang="ja" class="front-vocab">{{Expression}}</div>
-    <div id="hint">
+    <div class="front-sentence">
       {{#FuriganaOnHover}}
       {{#SentenceFurigana}} {{furigana:SentenceFurigana}} {{/SentenceFurigana}}
       {{^SentenceFurigana}} {{furigana:Sentence}} {{/SentenceFurigana}}
@@ -47,7 +47,7 @@
 
     <!-- Hint -->
     {{#Hint}}
-    <div id="hint">{{Hint}}</div>
+    <div id="hint">{{hint:Hint}}</div>
     {{/Hint}}
 </main>
 
