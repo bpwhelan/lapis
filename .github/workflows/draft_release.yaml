@@ -29,15 +29,15 @@ jobs:
           pip install -r requirements.txt
 
       - name: Generate Anki Deck
-        run: python genapkg.py "Lapis-${{ github.event.inputs.version }}.apkg"
+        run: python genapkg.py "Lapis-WithMeaning-${{ github.event.inputs.version }}.apkg"
 
       - name: Create Draft Release
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.event.inputs.version }}
-          name: "Lapis ${{ github.event.inputs.version }}"
-          files: "build/Lapis-${{ github.event.inputs.version }}.apkg"
+          name: "Lapis-WithMeaning ${{ github.event.inputs.version }}"
+          files: "build/Lapis-WithMeaning-${{ github.event.inputs.version }}.apkg"
           draft: true 
           body: |
             ## How to update Lapis

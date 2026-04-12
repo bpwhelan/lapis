@@ -49,3 +49,6 @@
 - name: MiscInfo
   font: Hiragino Sans Pr6N
   size: 15
+- name: SentenceMeaning
+  font: Hiragino Sans Pr6N
+  size: 20
